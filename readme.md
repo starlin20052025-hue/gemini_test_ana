@@ -1,15 +1,14 @@
 > [!WARNING]
 > 這個 repository 目前包含的是一份 **由 Gemini 產生的加密貨幣策略研究 prototype**。
 >
-> 它適合作為草稿框架、討論材料，以及後續重構的起點，但**尚未**通過 research-grade 等級的驗證。
+> 雖然我們已完成了 P0 級別的架構強化，包括：
+> - 定義了研究協議 (`RESEARCH_PROTOCOL.md`)
+> - 重建了可審計的回測引擎 (`src/backtest_engine.py`)
+> - 正式建立了反未來函數 (Anti-Leak) 機制 (`ANTI_LEAK_CHECKLIST.md` 及程式碼修正)
+> - 重構了 Walk-Forward 驗證流程 (`src/research_script.py`)
+> - 重新驗證了績效指標定義 (`METRICS_DEFINITION.md` 及 `src/backtest_engine.py` 修正)
 >
-> 目前實作仍然需要在以下幾個面向進行大量檢查與強化：
-> - 回測正確性
-> - walk-forward 嚴謹度
-> - anti-future-leak 保證
-> - 績效指標定義與驗證
-> - 缺值 / 缺 bar 處理
-> - pair trade 實作是否符合真實研究需求
+> 但此專案**尚未**通過 research-grade 等級的完整驗證，特別是在成本模型細節、缺值 / 缺 bar 處理、Trade-level 分析及 Pair Trade 嚴謹性方面，仍需進一步強化。
 >
 > 目前 repository 內任何績效結果都應視為 **探索用途**，不能當作最終交易證據。
 
@@ -68,12 +67,9 @@
 
 以下幾個面向在完成進一步強化前，都**不應直接信任**：
 
-- 回測引擎正確性
-- walk-forward 實作嚴謹度
-- anti-leak 保證
-- 成本模型真實性
-- 缺值 / 缺 bar 處理
-- pair-trade 邏輯與評估方式
+- 成本模型真實性 (已有所改進，但仍需進一步細化)
+- 缺值 / 缺 bar 處理 (已改進為報告，但處理策略仍需定義)
+- pair-trade 邏輯與評估方式 (仍為概念性實現)
 - 對績效結果的解讀方式
 
 ---
@@ -84,8 +80,11 @@
 
 1. `REVIEW_NOTES.md`
 2. `TODO_FIXES.md`
-3. `README.md`
-4. `src/` 底下的原始碼
+3. `RESEARCH_PROTOCOL.md`
+4. `ANTI_LEAK_CHECKLIST.md`
+5. `METRICS_DEFINITION.md`
+6. `README.md`
+7. `src/` 底下的原始碼
 
 這樣的順序可以避免在還沒理解風險前，就先把這個 repo 誤認為是一套已經驗證完成的框架。
 
@@ -95,14 +94,9 @@
 
 在繼續擴充策略庫之前，應優先處理：
 
-1. 明確定義 research protocol
-2. 重建 backtest engine
-3. 正式建立 anti-leak 機制
-4. 重建 walk-forward 驗證流程
-5. 重新驗證 metrics 定義
-6. 修正缺值 / 缺 bar 處理
-7. 以更嚴格規則重跑 baseline
-8. 之後才重新評估是否繼續做 pair trade
+1. 修正缺值 / 缺 bar 處理 (已改為報告，但需定義處理策略)
+2. 以更嚴格規則重跑 baseline
+3. 之後才重新評估是否繼續做 pair trade
 
 ---
 
@@ -138,14 +132,17 @@
 │  └─ pair_trade_research.py
 ├─ REVIEW_NOTES.md
 ├─ TODO_FIXES.md
+├─ RESEARCH_PROTOCOL.md
+├─ ANTI_LEAK_CHECKLIST.md
+├─ METRICS_DEFINITION.md
 └─ README.md
 
 目前對各模組成熟度的建議判斷：
 
-data_loader.py -> 草稿
-backtest_engine.py -> prototype，尚未驗證
-research_script.py -> 探索用 baseline
-pair_trade_research.py -> 概念性 placeholder
+data_loader.py -> 已強化，缺值處理待完善
+backtest_engine.py -> 已重建，待更精細成本模型
+research_script.py -> 已強化，探索用 baseline
+pair_trade_research.py -> 概念性 placeholder，仍待重建
 原始研究需求
 
 以下保留最初提供給 Gemini 的研究任務說明，讓未來 review 這個 repository 的人可以理解這個專案原本希望達成的研究範圍、標準與設計目標。

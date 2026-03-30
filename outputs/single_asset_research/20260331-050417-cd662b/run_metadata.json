@@ -1,0 +1,10 @@
+{
+    "run_id": "20260331-050417-cd662b",
+    "timestamp": "2026-03-31T05:04:17.563324",
+    "symbol": "BTCUSDT",
+    "interval": "1h",
+    "initial_capital": 100000,
+    "commission_bps": 5.0,
+    "slippage_bps": 1.0,
+    "status": "Completed"
+}

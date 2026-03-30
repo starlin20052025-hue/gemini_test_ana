@@ -1,0 +1,25 @@
+{
+    "run_id": "20260331-051804-cfb26c",
+    "timestamp": "2026-03-31T05:18:04.390359",
+    "symbol_a": "BTCUSDT",
+    "symbol_b": "ETHUSDT",
+    "interval": "1h",
+    "initial_capital": 100000,
+    "commission_bps": 10.0,
+    "slippage_bps": 1.0,
+    "status": "Completed",
+    "entry_threshold": 1.5,
+    "zscore_window": 100,
+    "data_gap_stats": {
+        "BTCUSDT": {
+            "gap_count": 32,
+            "max_gap_length": 5,
+            "avg_gap_length": 2.1333333333333333
+        },
+        "ETHUSDT": {
+            "gap_count": 1,
+            "max_gap_length": 1,
+            "avg_gap_length": 1.0
+        }
+    }
+}

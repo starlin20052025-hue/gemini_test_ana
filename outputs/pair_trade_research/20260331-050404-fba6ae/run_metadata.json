@@ -1,0 +1,13 @@
+{
+    "run_id": "20260331-050404-fba6ae",
+    "timestamp": "2026-03-31T05:04:05.413415",
+    "symbol_a": "BTCUSDT",
+    "symbol_b": "ETHUSDT",
+    "interval": "1h",
+    "initial_capital": 100000,
+    "commission_bps": 10.0,
+    "slippage_bps": 1.0,
+    "status": "Completed",
+    "entry_threshold": 1.5,
+    "zscore_window": 100
+}

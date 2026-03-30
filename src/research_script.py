@@ -87,7 +87,7 @@ class ResearchFramework:
             df_processed.drop(columns=['has_gap'], inplace=True)
 
         # Set index for backtesting
-        df_processed.set_index(pd.to_datetime(df_processed['timestamp'], unit='ms'), inplace=True)
+        df_processed.set_index(pd.to_datetime(df_processed['timestamp']), inplace=True)
         df_processed.drop(columns=['timestamp'], inplace=True) # Drop the timestamp column itself
 
         n = len(df_processed)

@@ -50,7 +50,7 @@ class PairTradeResearch:
         combined_df = combined_df.drop(columns=gap_cols) # Drop the has_gap columns
         
         # Set index for backtesting
-        combined_df.index = pd.to_datetime(combined_df.index.get_level_values(0), unit='ms') # Assuming timestamp is the first level of index from get_batch_data
+        combined_df.index = pd.to_datetime(combined_df.index)
         # Note: combined_df.columns.droplevel('timestamp') is no longer needed as 'timestamp' is not a column level anymore.
 
         # Extract individual close prices
